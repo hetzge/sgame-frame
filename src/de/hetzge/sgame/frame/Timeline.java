@@ -33,7 +33,8 @@ public class Timeline {
 		flushBuffer();
 		long before = System.currentTimeMillis();
 		this.current.execute();
-		FrameModule.update.update();
+		IF_Update update = FrameModule.setup.getUpdate();
+		update.update();
 		long executionTime = System.currentTimeMillis() - before;
 		if (executionTime > this.frameTimer.getEveryMilliseconds()) {
 			Logger.warn("frame executiontime is longer then frametime: " + executionTime);
